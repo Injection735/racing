@@ -11,12 +11,13 @@ public class DailyRewardView : MonoBehaviour
 	[Header("Settings Time Get Reward")]
 	[SerializeField] private float _timeCooldown = 86400;
 	[SerializeField] private float _timeDeadline = 172800;
-	
+
 	[Header("Settings Rewards")]
 	[SerializeField] private List<Reward> _rewards;
-	
+
 	[Header("Ui Elements")]
 	[SerializeField] private Text _timerNewReward;
+	[SerializeField] private ProgressBar _progressBar;
 	[SerializeField] private Transform _mountRootSlotsReward;
 	[SerializeField] private ContainerSlotRewardView _containerSlotRewardView;
 	[SerializeField] private Button _getRewardButton;
@@ -26,6 +27,7 @@ public class DailyRewardView : MonoBehaviour
 	public float TimeDeadline => _timeDeadline;
 	public List<Reward> Rewards => _rewards;
 	public Text TimerNewReward => _timerNewReward;
+	public ProgressBar ProgressBar => _progressBar;
 	public Transform MountRootSlotsReward => _mountRootSlotsReward;
 	public ContainerSlotRewardView ContainerSlotRewardView => _containerSlotRewardView;
 	public Button GetRewardButton => _getRewardButton;

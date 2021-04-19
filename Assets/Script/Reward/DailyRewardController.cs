@@ -6,7 +6,7 @@ public class DailyRewardController
 {
 	private DailyRewardView _dailyRewardView;
 	private List<ContainerSlotRewardView> _slots;
-	private bool _isGetReward;
+	private bool _canGetReward;
 
 	public DailyRewardController(DailyRewardView generateLevelView)
 	{
@@ -40,18 +40,19 @@ public class DailyRewardController
 
 	private void RefreshRewardsState()
 	{
-		_isGetReward = true;
+		_canGetReward = true;
 
 		if (_dailyRewardView.TimeGetReward.HasValue)
 		{
 			var timeSpan = DateTime.UtcNow - _dailyRewardView.TimeGetReward.Value;
-			if (timeSpan.Seconds > _dailyRewardView.TimeDeadline)
+
+			if (timeSpan.TotalSeconds > _dailyRewardView.TimeDeadline)
 			{
 				_dailyRewardView.TimeGetReward = null;
 				_dailyRewardView.CurrentSlotInActive = 0;
 			}
-			else if (timeSpan.Seconds < _dailyRewardView.TimeCooldown)
-				_isGetReward = false;
+			else if (timeSpan.TotalSeconds < _dailyRewardView.TimeCooldown)
+				_canGetReward = false;
 		}
 
 		RefreshUi();
@@ -59,19 +60,26 @@ public class DailyRewardController
 
 	private void RefreshUi()
 	{
-		_dailyRewardView.GetRewardButton.interactable = _isGetReward;
+		_dailyRewardView.GetRewardButton.interactable = _canGetReward;
+		_dailyRewardView.ProgressBar.Total = _dailyRewardView.TimeCooldown;
 
-		if (_isGetReward)
-			_dailyRewardView.TimerNewReward.text = "The reward is received today";
-		else
+		if (_dailyRewardView.TimeGetReward != null)
 		{
-			if (_dailyRewardView.TimeGetReward != null)
+			var nextClaimTime = _dailyRewardView.TimeGetReward.Value.AddSeconds(_dailyRewardView.TimeCooldown);
+
+			TimeSpan currentClaimCooldown = nextClaimTime - DateTime.UtcNow;
+
+			if (currentClaimCooldown.TotalSeconds < 0)
 			{
-				var nextClaimTime =
-				_dailyRewardView.TimeGetReward.Value.AddSeconds(_dailyRewardView.TimeCooldown);
-				var currentClaimCooldown = nextClaimTime - DateTime.UtcNow;
+				_dailyRewardView.ProgressBar.CurrentValue = _dailyRewardView.ProgressBar.Total;
+				_dailyRewardView.TimerNewReward.text = $"Time recieve reward";
+				_dailyRewardView.GetRewardButton.interactable = true;
+			}
+			else
+			{
 				var timeGetReward = $"{currentClaimCooldown.Days:D2}:{currentClaimCooldown.Hours:D2}:{currentClaimCooldown.Minutes:D2}:{ currentClaimCooldown.Seconds:D2}";
 				_dailyRewardView.TimerNewReward.text = $"Time to get the next reward: {timeGetReward} ";
+				_dailyRewardView.ProgressBar.CurrentValue = _dailyRewardView.ProgressBar.Total - (float) currentClaimCooldown.TotalSeconds;
 			}
 		}
 
@@ -87,7 +95,7 @@ public class DailyRewardController
 
 	private void ClaimReward()
 	{
-		if (!_isGetReward)
+		if (!_canGetReward)
 			return;
 
 		var reward = _dailyRewardView.Rewards[_dailyRewardView.CurrentSlotInActive];
