@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class MainWindowView : MonoBehaviour
 {
 	[SerializeField] private Button _buttonOpenPopup;
+	[SerializeField] private ShiningButton _shiningButton;
+	[SerializeField] private Button _appearShiningButton;
 
 	[SerializeField] private PopupView _popupView;
 
@@ -13,11 +15,13 @@ public class MainWindowView : MonoBehaviour
 	private void Start()
 	{
 		_buttonOpenPopup.onClick.AddListener(_popupView.ShowPopup);
+		_appearShiningButton.onClick.AddListener(_shiningButton.Appear);
 	}
 
 	private void OnDestroy()
 	{
 		_buttonOpenPopup.onClick.RemoveAllListeners();
+		_appearShiningButton.onClick.RemoveAllListeners();
 	}
 
 	private void ChangeText()
