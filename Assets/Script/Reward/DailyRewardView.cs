@@ -3,35 +3,59 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class DailyRewardView : MonoBehaviour
 {
 	private const string CurrentSlotInActiveKey = nameof(CurrentSlotInActiveKey);
 	private const string TimeGetRewardKey = nameof(TimeGetRewardKey);
 
 	[Header("Settings Time Get Reward")]
-	[SerializeField] private float _timeCooldown = 86400;
-	[SerializeField] private float _timeDeadline = 172800;
+	[SerializeField]
+	private float _timeCooldown = 5;
+
+	[SerializeField]
+	private float _timeDeadline = 10;
 
 	[Header("Settings Rewards")]
-	[SerializeField] private List<Reward> _rewards;
+	[SerializeField]
+	private List<Reward> _rewards;
 
 	[Header("Ui Elements")]
-	[SerializeField] private Text _timerNewReward;
-	[SerializeField] private ProgressBar _progressBar;
-	[SerializeField] private Transform _mountRootSlotsReward;
-	[SerializeField] private ContainerSlotRewardView _containerSlotRewardView;
-	[SerializeField] private Button _getRewardButton;
-	[SerializeField] private Button _resetButton;
+	[SerializeField]
+	private Text _timerNewReward;
+
+	[SerializeField]
+	private Transform _mountRootSlotsReward;
+
+	[SerializeField]
+	private ContainerSlotRewardView _containerSlotRewardView;
+
+	[SerializeField]
+	private Button _getRewardButton;
+
+	[SerializeField]
+	private Button _resetButton;
+
+	[SerializeField]
+	private Button _closeWindow;
 
 	public float TimeCooldown => _timeCooldown;
+
 	public float TimeDeadline => _timeDeadline;
+
 	public List<Reward> Rewards => _rewards;
+
 	public Text TimerNewReward => _timerNewReward;
-	public ProgressBar ProgressBar => _progressBar;
+
 	public Transform MountRootSlotsReward => _mountRootSlotsReward;
+
 	public ContainerSlotRewardView ContainerSlotRewardView => _containerSlotRewardView;
+
 	public Button GetRewardButton => _getRewardButton;
+
 	public Button ResetButton => _resetButton;
+
+	public Button CloseWindow => _closeWindow;
 
 	public int CurrentSlotInActive
 	{
@@ -44,8 +68,10 @@ public class DailyRewardView : MonoBehaviour
 		get
 		{
 			var data = PlayerPrefs.GetString(TimeGetRewardKey, null);
+
 			if (!string.IsNullOrEmpty(data))
 				return DateTime.Parse(data);
+
 			return null;
 		}
 		set
@@ -55,11 +81,5 @@ public class DailyRewardView : MonoBehaviour
 			else
 				PlayerPrefs.DeleteKey(TimeGetRewardKey);
 		}
-	}
-
-	private void OnDestroy()
-	{
-		_getRewardButton.onClick.RemoveAllListeners();
-		_resetButton.onClick.RemoveAllListeners();
 	}
 }

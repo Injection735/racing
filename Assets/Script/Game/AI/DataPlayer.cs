@@ -5,7 +5,7 @@ abstract class DataPlayer
 	private string _titleData;
 	private int _countMoney;
 	private int _countHealth;
-	private int _countPower;
+	private int _countForce;
 	private int _countCrime;
 
 	private List<IEnemy> _enemies = new List<IEnemy>();
@@ -59,15 +59,15 @@ abstract class DataPlayer
 		}
 	}
 
-	public int Power
+	public int Force
 	{
-		get => _countPower;
+		get => _countForce;
 		set
 		{
-			if (_countPower != value)
+			if (_countForce != value)
 			{
-				_countPower = value;
-				Notify(DataType.Power);
+				_countForce = value;
+				Notify(DataType.Force);
 			}
 		}
 	}
@@ -102,9 +102,9 @@ class Health : DataPlayer
 	}
 }
 
-class Power : DataPlayer
+class Force : DataPlayer
 {
-	public Power(string titleData)
+	public Force(string titleData)
 	    : base(titleData)
 	{
 	}

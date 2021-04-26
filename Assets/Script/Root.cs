@@ -4,20 +4,33 @@ using UnityEngine;
 
 public class Root : MonoBehaviour
 {
-    [SerializeField] 
-    private Transform _placeForUi;
+	[SerializeField]
+	private Transform _placeForUi;
 
-    private MainController _mainController;
+	[SerializeField]
+	private DailyRewardView _dailyRewardView;
 
-    private void Awake()
-    {
-        ProfilePlayer profilePlayer = new ProfilePlayer(15f, new UnityAnalyticTools());
-        profilePlayer.CurrentState.Value = GameState.Start;
-        _mainController = new MainController(_placeForUi, profilePlayer);
-    }
+	[SerializeField]
+	private CurrencyView _currencyView;
 
-    protected void OnDestroy()
-    {
-        _mainController?.Dispose();
-    }
+	[SerializeField]
+	private FightWindowView _fightWindowView;
+
+	[SerializeField]
+	private StartFightView _startFightView;
+
+	private MainController _mainController;
+
+	private void Awake()
+	{
+		ProfilePlayer profilePlayer = new ProfilePlayer(15f, new UnityAnalyticTools());
+		profilePlayer.CurrentState.Value = GameState.Start;
+		_mainController = new MainController(_placeForUi, profilePlayer, _dailyRewardView,
+		    _currencyView, _fightWindowView, _startFightView);
+	}
+
+	protected void OnDestroy()
+	{
+		_mainController?.Dispose();
+	}
 }

@@ -34,8 +34,8 @@ class Enemy : IEnemy
 				_healthPlayer = dataPlayer.Health;
 				break;
 
-			case DataType.Power:
-				_powerPlayer = dataPlayer.Power;
+			case DataType.Force:
+				_powerPlayer = dataPlayer.Force;
 				break;
 
 			case DataType.Crime:
@@ -46,7 +46,7 @@ class Enemy : IEnemy
 		Debug.Log($"Notified {_name} change to {dataPlayer}");
 	}
 
-	public int Power
+	public int Force
 	{
 		get
 		{

@@ -2,6 +2,6 @@
 {
 	Money,
 	Health,
-	Power,
+	Force,
 	Crime
 }

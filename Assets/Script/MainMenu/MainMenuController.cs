@@ -28,9 +28,9 @@ namespace Ui
 		public MainMenuController(Transform placeForUi, ProfilePlayer profilePlayer)
 		{
 			_profilePlayer = profilePlayer;
-			_view = ResourceLoader.LoadAndInstantiateObject<MainMenuView>(new ResourcePath { PathResource = "Prefabs/mainMenu" }, placeForUi, false);
+			_view = ResourceLoader.LoadAndInstantiateObject<MainMenuView>(new ResourcePath { PathResource = "Prefabs/MainMenu" }, placeForUi, false);
 			AddGameObjects(_view.gameObject);
-			_view.Init(StartGame);
+			_view.Init(StartGame, DailyRewardGame);
 
 			// можно внедрить как зависимость для другого контроллера
 			var cursorTrailController = ConfigureCursorTrail();
@@ -47,6 +47,12 @@ namespace Ui
 		{
 			return _shedController.GetEquipedItems();
 		}
+
+		private void DailyRewardGame()
+		{
+			_profilePlayer.CurrentState.Value = GameState.DailyReward;
+		}
+
 
 		private BaseController ConfigureCursorTrail()
 		{

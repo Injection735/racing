@@ -1,12 +1,11 @@
-﻿
-namespace Profile
+﻿namespace Profile
 {
-    public enum GameState
-    {
-        None,
-        Start,
-        Game
-    }
+	public enum GameState
+	{
+		None,
+		Start,
+		DailyReward,
+		Fight,
+		Game
+	}
 }
-
-
