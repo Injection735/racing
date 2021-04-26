@@ -39,6 +39,9 @@ public class DailyRewardView : MonoBehaviour
 	[SerializeField]
 	private Button _closeWindow;
 
+	[SerializeField]
+	private ProgressBar _progressBar;
+
 	public float TimeCooldown => _timeCooldown;
 
 	public float TimeDeadline => _timeDeadline;
@@ -48,6 +51,8 @@ public class DailyRewardView : MonoBehaviour
 	public Text TimerNewReward => _timerNewReward;
 
 	public Transform MountRootSlotsReward => _mountRootSlotsReward;
+
+	public ProgressBar ProgressBar => _progressBar;
 
 	public ContainerSlotRewardView ContainerSlotRewardView => _containerSlotRewardView;
 
