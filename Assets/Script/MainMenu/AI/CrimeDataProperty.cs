@@ -8,14 +8,14 @@
 
 	public override void Change(bool isAddCount)
 	{
-		value += isAddCount ? 1 : -1;
+		Value += isAddCount ? 1 : -1;
 
-		if (value < 0)
-			value = 0;
+		if (Value < 0)
+			Value = 0;
 
-		if (value > MAX_CRIME)
-			value = MAX_CRIME;
+		if (Value > MAX_CRIME)
+			Value = MAX_CRIME;
 
-		OnClickObserver(value, _type);
+		OnClickObserver(Value, _type);
 	}
 }

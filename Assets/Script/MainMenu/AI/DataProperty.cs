@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public abstract class DataProperty
 {
 	protected DataType _type;
-	protected int value;
+	public int Value { get; protected set; } = 0;
 
 	public System.Action<int, DataType> OnClickObserver { get; set; } = delegate { };
 

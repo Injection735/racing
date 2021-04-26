@@ -31,7 +31,7 @@ public class MainWindowObserver : MonoBehaviour
 		{ DataType.Money,	new DefaultDataProperty(DataType.Money) },
 		{ DataType.Health,	new DefaultDataProperty(DataType.Health) },
 		{ DataType.Force,	new DefaultDataProperty(DataType.Force) },
-		{ DataType.Crime,	new DefaultDataProperty(DataType.Crime) },
+		{ DataType.Crime,	new CrimeDataProperty(DataType.Crime) },
 	};
 
 	private Money _money;
@@ -85,12 +85,12 @@ public class MainWindowObserver : MonoBehaviour
 
 	private void Escape()
 	{
-		Debug.Log(_allCountCrimePlayer <= CrimeDataProperty.MIN_CRIME_TO_ESCAPE ? "<color=#07FF00>Escaped!!!</color>" : "<color=#FF0000>Can't escape!!!</color>");
+		Debug.Log(_properties[DataType.Crime].Value <= CrimeDataProperty.MIN_CRIME_TO_ESCAPE ? "<color=#07FF00>Escaped!!!</color>" : "<color=#FF0000>Can't escape!!!</color>");
 	}
 
 	private void Fight()
 	{
-		Debug.Log(_allCountPowerPlayer >= _enemy.Force ? "<color=#07FF00>Win!!!</color>" : "<color=#FF0000>Lose!!!</color>");
+		Debug.Log(_properties[DataType.Force].Value >= _enemy.Force ? "<color=#07FF00>Win!!!</color>" : "<color=#FF0000>Lose!!!</color>");
 	}
 
 	private void ChangeDataWindow(int countChangeData, DataType dataType)
