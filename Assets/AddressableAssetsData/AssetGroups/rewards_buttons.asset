@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: rewards_buttons
+  m_EditorClassIdentifier: 
+  m_GroupName: rewards_buttons
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9e47e9a22daeeb7488f3763e845b170a
+  m_SerializeEntries:
+  - m_GUID: b4b9da17cecaad243b058f4fc5678a17
+    m_Address: Prefabs/Rewards/GetWeekly
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RewardButton
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: f46e69b6c6d87c74db80d14bf2683542
+    m_Address: Prefabs/Rewards/GetDaily
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RewardButton
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: aa3d9451c955f35438d71b695201b2f5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 2212783f4bf51e54e858cf570909e1fb, type: 2}
+    - {fileID: 11400000, guid: 7841e24d12f970145b047a1cf07006df, type: 2}

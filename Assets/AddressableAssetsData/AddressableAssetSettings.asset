@@ -31,6 +31,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 61442be8e497dd4448977518ab444184, type: 2}
   - {fileID: 11400000, guid: 25beb1efbfca042429edf38ff183c4ce, type: 2}
   - {fileID: 11400000, guid: 114d1ac0cb8477b458cd5bcde8e3ae1c, type: 2}
+  - {fileID: 11400000, guid: 484c32ab2cbb9e24fa0c3bbea619d657, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -73,6 +74,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - Spawn
+    - RewardButton
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 88d0a3a4e98da8b4bba8e46bd2abfc1b, type: 2}

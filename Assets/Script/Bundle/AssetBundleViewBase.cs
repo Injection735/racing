@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -12,9 +13,12 @@ public class AssetBundleViewBase : MonoBehaviour
 
 	private AssetBundle _spritesAssetBundle;
 	private AssetBundle _audioAssetBundle;
+	private long _timeStart = 0;
 
 	protected IEnumerator DownloadAndSetAssetBundle()
 	{
+		_timeStart = (int) DateTimeOffset.Now.ToUnixTimeMilliseconds();
+
 		yield return GetSpritesAssetBundle();
 		yield return GetAudioAssetBundle();
 
@@ -25,6 +29,8 @@ public class AssetBundleViewBase : MonoBehaviour
 		}
 
 		SetDownloadAssets();
+		Debug.Log("Time " + ((int) DateTimeOffset.Now.ToUnixTimeMilliseconds() - _timeStart).ToString());
+
 		yield return null;
 	}
 
